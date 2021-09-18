@@ -15,6 +15,7 @@ contract HelloWorld is ERC721, Ownable {
 
     function safeMint(address to) public onlyOwner {
         require(mintable, "token already minted");
+        
         mintable = false;
         _safeMint(to, 0);
     }
