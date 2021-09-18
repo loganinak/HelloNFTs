@@ -10,7 +10,7 @@ contract HelloWorld is ERC721, Ownable {
     constructor() ERC721("HelloWorld", "HELLO") {}
 
     function _baseURI() internal pure override returns (string memory) {
-        return "https://ipfs.io/ipfs/QmYSS9B5yeBrk9CgDWs4nQtzgnnx8LpdswABFQ84m47kqy";
+        return "ipfs://QmRWYhDanWcmYJFqWCbtRemcYzrNYkhVsPCr6Zie7k7s7f";
     }
 
     function safeMint(address to) public onlyOwner {
@@ -22,8 +22,11 @@ contract HelloWorld is ERC721, Ownable {
     function tokenURI(uint256 tokenId) public view override returns (string memory) {
         require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
 
-        string memory baseURI = _baseURI();
-        return bytes(baseURI).length > 0 ? baseURI : "";    
+        return _baseURI(); 
         
+    }
+    
+    function tokenSupply() public pure returns (string memory) {
+        return "1";
     }
 }
